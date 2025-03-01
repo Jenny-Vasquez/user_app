@@ -1,66 +1,92 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sistema de Gestión de Usuarios
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este es un **Sistema de Gestión de Usuarios** desarrollado con **Laravel**. Permite a los administradores gestionar cuentas de usuario, asignar roles y controlar permisos de acceso.
 
-## About Laravel
+## Características
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Autenticación de usuarios** (Inicio de sesión, Cierre de sesión, Registro)
+- **Control de acceso basado en roles**
+  - **Superadmin**: Puede gestionar todos los usuarios (excepto su propio perfil)
+  - **Admin**: Puede editar su propio perfil y gestionar usuarios normales
+  - **Usuario**: Solo puede editar su propio perfil
+- **Operaciones**
+  - Crear nuevos usuarios (Solo Admins y Superadmins)
+  - Editar perfiles de usuario según los permisos
+  - Eliminar usuarios (Solo Superadmins, pero no a sí mismos ni al usuario con ID 1)
+- **Paginación en la lista de usuarios**
+- **Validación de datos de usuario**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Instalación
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Requisitos previos
+Asegúrate de tener instalados los siguientes requisitos:
+- PHP (>= 8.0)
+- Composer
+- Laravel (última versión)
+- MySQL o SQLite (o cualquier base de datos compatible con Laravel)
 
-## Learning Laravel
+### Configuración
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Clonar el repositorio:
+   ```bash
+   https://github.com/Jenny-Vasquez/UserApp.git
+   cd usereApp
+   ```
+2. Instalar dependencias:
+   ```bash
+   composer install
+   ```
+3. Copiar el archivo de entorno y configurar la base de datos:
+   ```bash
+   cp .env.example .env
+   ```
+   Actualiza `.env` con las credenciales de tu base de datos.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+4. Generar la clave de la aplicación:
+   ```bash
+   php artisan key:generate
+   ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+5. Ejecutar migraciones y poblar la base de datos:
+   ```bash
+   php artisan migrate --seed
+   ```
 
-## Laravel Sponsors
+6. Iniciar el servidor de desarrollo:
+   ```bash
+   php artisan serve
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Uso
 
-### Premium Partners
+- Regístrate o inicia sesión como usuario.
+- Los Superadmins y Admins pueden acceder al panel de **Gestión de Usuarios**.
+- Asigna roles al crear nuevos usuarios.
+- Edita o elimina usuarios según los permisos establecidos.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Permisos por rol
+| Rol        | Crear Usuarios | Editar Usuarios | Eliminar Usuarios |
+|------------|---------------|-----------------|--------------------|
+| Superadmin | ✅            | ✅ (Todos excepto él mismo) | ✅ (Todos excepto él mismo y ID 1) |
+| Admin      | ✅ (Solo usuarios) | ✅ (A sí mismo y a usuarios) | ❌ |
+| Usuario    | ❌            | ✅ (Solo a sí mismo) | ❌ |
 
-## Contributing
+## Imagenes de la aplicacion
+![Imagen 1](images/1.png)  
+![Imagen 2](images/2.png)  
+![Imagen 3](images/3.png)  
+![Imagen 4](images/4.png)  
+![Imagen 5](images/5.png)  
+![Imagen 6](images/6.png)  
+![Imagen 7](images/7.png)  
+![Imagen 8](images/8.png)  
+![Imagen 9](images/9.png)  
+![Imagen 10](images/10.png)  
+![Imagen 11](images/11.png)  
+![Imagen 12](images/12.png)  
+![Imagen 13](images/13.png)  
+![Imagen 14](images/14.png)  
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Autor
+Desarrollado por **Jenny Vásquez**
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
